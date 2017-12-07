@@ -66,9 +66,9 @@ print("Doing AuthRequest to FIDO UAF Server\n");
 UAFurl = fido_server['AUTH_REQUEST_MSG'] % (fido_server['SCHEME'], fido_server['HOSTNAME'], fido_server['PORT'], fido_server['AUTH_REQUEST_ENDPOINT'])
 print(UAFurl)
 r = requests.get(UAFurl)
-print r.status_code
-print r.headers
-print r.content
+#print r.status_code
+#print r.headers
+#print r.content
 
 blocks = (chunk.content / BLOCK_SIZE) + 1;
 
