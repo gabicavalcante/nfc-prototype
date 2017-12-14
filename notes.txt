@@ -1,0 +1,42 @@
+pi@raspberrypi:~/Adafruit_Python_PN532/examples $ sudo python readmifare.py
+Found PN532 with firmware version: 1.6
+Waiting for MiFare card...
+Found card with UID: 0x01020304
+Failed to authenticate block 4!
+
+
+# clf = nfc.ContactlessFrontend()
+# check = clf.open('usb:072f:2200')
+# print(check)
+
+# tag = clf.connect(rdwr={'on-connect': lambda tag: False})
+# print(tag)
+
+clf = nfc.ContactlessFrontend('usb')
+after5s = lambda: time.time() - started > 5
+started = time.time()
+tag = clf.connect(llcp={}, terminate=after5s)
+print(tag)
+
+clf.close()
+
+
+
+
+
+
+---
+
+
+
+import nfc, time
+
+clf = nfc.ContactlessFrontend()
+check = clf.open('usb:072f:2200')
+print(check)
+
+tag = clf.connect(rdwr={'on-connect': lambda tag: False})
+print(tag)
+
+clf.close()
+
