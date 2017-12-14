@@ -71,8 +71,9 @@ device.connstring = "pn532_i2c:/dev/i2c-1"
 
 Toggle the switch to the I2C mode
 
- | SEL0 | SEL1 |
- |  H	|  L   |
+| SEL0        | SEL1        |
+| ----------- | :---------: |
+| H           | L           |
 
 7. Run i2cdetect –y 1 to check whether the I2C device is recognized.
 
