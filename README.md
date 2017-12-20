@@ -1,4 +1,6 @@
-# nfc
+# NFC Prototype
+
+This project is a simple prototype to use FIDO and Federation Authentication. This card reader uses NFC to communicate with a specific Android Opening Door App.
 
 ## PN532 NFC Module for Raspberry Pi [1](http://wiki.sunfounder.cc/index.php?title=PN532_NFC_Module_for_Raspberry_Pi)
 
