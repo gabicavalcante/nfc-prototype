@@ -15,6 +15,7 @@ Select 5 Interfacing Options -> I2C -> yes.
 2. Install some dependent packages
 ```
 sudo apt-get update
+sudo apt-get install git build-essential autoconf libtool libpcsclite-dev
 sudo apt-get install libusb-dev libpcsclite-dev i2c-tools
 ```
 
@@ -83,8 +84,44 @@ Then type in nfc-list to check the NFC module:
 [put prints]
 
 
-## References
+8. Run `nfc-list` or `nfc-poll`.
+
+### References
 
 [1] [PN532 NFC Module for Raspberry Pi](http://wiki.sunfounder.cc/index.php?title=PN532_NFC_Module_for_Raspberry_Pi)
 
 [2] [Setting up a PN532 NFC module on a Raspberry Pi using I2C](https://blog.stigok.com/post/setting-up-a-pn532-nfc-module-on-a-raspberry-pi-using-i2c)
+
+
+## NFC Bindings
+
+1. Install Requirements
+
+* libnfc >= 1.7.1 
+* cmake
+	```sudo apt install cmake```
+* swig	
+	```sudo apt-get install swig```
+* python
+
+2. Quickstart
+	
+	git clone https://github.com/xantares/nfc-bindings.git
+	cmake -DCMAKE_INSTALL_PREFIX=~/.local .
+	make install
+	python python/examples/quick_start_example.py 
+
+## NFC Prototype
+	
+1. Get the source code
+
+	cd ~ && git clone https://github.com/I-am-Gabi/nfc-prototype.git
+	cd nfc-prototype/
+
+2. Change HOSTNAME and PORT values on Door lock NFC card reader's settings.py file to the IP Address and PORT where you are running the FIDO UAF Demo Server 
+	
+	nano settgins.py
+
+3. Run it
+	
+	python nfc-prototype.py
