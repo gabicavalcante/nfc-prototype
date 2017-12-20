@@ -50,7 +50,7 @@ print("Target detected!\n");
 
 # pbtTx : bytes (contains a byte array of the frame that needs to be transmitted.)
 # pbtTx = '\x00\xA4\x04\x00\x07\xF0\x39\x41\x48\x14\x81\x00\x00'
-pbtTx = DoorProtocol[APDU]
+pbtTx = DoorProtocol['APDU']
 # szTx : int (contains the length in bytes.)
 szTx = sys.getsizeof(pbtTx)
 # szRx : int (size of pbtRx (Will return NFC_EOVFLOW if RX exceeds this size))
