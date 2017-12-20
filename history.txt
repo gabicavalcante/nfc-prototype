@@ -1,0 +1,61 @@
+    1  ls
+    2  sudo apt-get install git build-essential autoconf libtool libpcsclite-dev
+    3  sudo apt-get install libusb-dev libpcsclite-dev i2c-tools
+    4  cd ~
+    5  sudo apt install i2c-tools
+    6  i2cdetect -y 1
+    7  wget http://dl.bintray.com/nfc-tools/sources/libnfc-1.7.1.tar.bz2
+    8  tar -xf libnfc-1.7.1.tar.bz2  
+    9  cd libnfc-1.7.1
+   10  ./configure --prefix=/usr --sysconfdir=/etc
+   11  make
+   12  sudo make install 
+   13  cd /etc
+   14  sudo mkdir nfc
+   15  sudo nano /etc/nfc/libnfc.conf
+   16  i2cdetect –y 1
+   17  i2cdetect -y 1
+   18  nfc-list
+   19  nfc-poll
+   20  cd
+   21  ls
+   22  nano test.py
+   23  python test.py 
+   24  rm test.py 
+   25  cd Documents/
+   26  mkdir dev
+   27  cd dev/
+   28  nano script.py
+   29  cd
+   30  cd ~ && git clone https://github.com/emersonmello/doorlock_raspberrypi.git
+   31  cd doorlock_raspberrypi
+   32  nano rp_settings.h
+   33  cd
+   34  cd Documents/dev/
+   35  ls
+   36  pip install --upgrade virtualenv
+   37  virtualenv -p python3 env
+   38  virtualenv python3 env
+   39  python3 -m venv env
+   40  ls
+   41  source env/bin/activate
+   42  python script.py 
+   43  pip install py532lib
+   44  cd
+   45  git clone https://github.com/xantares/nfc-bindings.git
+   46  exit
+   47  ls
+   48  cd nfc-bindings/
+   49  cmake -DCMAKE_INSTALL_PREFIX=~/.local .
+   50  sudo apt install cmake
+   51  cmake -DCMAKE_INSTALL_PREFIX=~/.local .
+   52  sudo apt-get install swig
+   53  cmake -DCMAKE_INSTALL_PREFIX=~/.local .
+   54  make install
+   55  python python/examples/quick_start_example.py
+   56  cd python/examples/
+   57  ls
+   58  python nfc-list.py 
+   59  history | more
+   60  cd
+   61  history | more > history.txt

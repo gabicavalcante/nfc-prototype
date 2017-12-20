@@ -5,15 +5,8 @@
 
 from __future__ import print_function
 import sys
-import nfc 
+import nfc
 from door_protocol import DoorProtocol
-
-# Reset the default Crtl-C behavior
-import signal
-try:
-	signal.signal(signal.SIGINT, signal.SIG_DFL)
-except ValueError:
-	pass
 
 print('Version: ', nfc.__version__)
 
@@ -44,17 +37,17 @@ print("Target detected!\n");
 
 # cardTransmit
 # res = 0
-rapdu[264];
-capdu = repr(DoorProtocol.APDU)
-capdulen = sys.getsizeof(APDU);
+rapdu = [0] * 264
+#capdu = DoorProtocol.APDU
+pbtTx = '\x00\xA4\x04\x00\x07\xF0\x39\x41\x48\x14\x81\x00\x00'
+szTx = sys.getsizeof(pbtTx);
 rapdulen = sys.getsizeof(rapdu); 
-print(help(nfc.initiator_transceive_bytes)
-res = nfc.initiator_transceive_bytes(pnd, capdu, capdulen, rapdu, rapdulen, 500)
+print(help(nfc.initiator_transceive_bytes))
+res = nfc.initiator_transceive_bytes(pnd, pbtTx, capdulen, rapdu, rapdulen, 500)
 printf("Application selected!\n");
 
 # verificar se rapdu é DOOR_HELLO
 print(rapdu)
-
 
 print('The following (NFC) ISO14443A tag was found:')
 print('    ATQA (SENS_RES): ', end='')

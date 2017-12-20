@@ -19,4 +19,5 @@ class DoorProtocol(Enum):
     DOOR_RESULT = "\x52\x45\x53\x55\x4C\x54"  # "RESULT"
 
 
-print(repr(DoorProtocol.APDU))
+d = DoorProtocol.DOOR_HELLO
+print(d)
