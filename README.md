@@ -1,8 +1,16 @@
 # NFC Prototype
 
-This project is a simple prototype to use FIDO and Federation Authentication. This card reader uses NFC to communicate with a specific Android Opening Door App.
+This project is a simple prototype to use [FIDO UAF Standard](https://fidoalliance.org/specifications/download/) and Federation Authentication with IoT. This card reader uses NFC to communicate with a specific Android mobile app, and a Raspberry Pi 3. You can check the [original project in C](https://github.com/emersonmello/doorlock_raspberrypi), and the [Android App](https://github.com/emersonmello/openingdoor). 
 
-## PN532 NFC Module for Raspberry Pi 3 [^1](http://wiki.sunfounder.cc/index.php?title=PN532_NFC_Module_for_Raspberry_Pi)
+This projeto and [Android Opening Door App](https://github.com/emersonmello/openingdoor) depend of a third-party, called [FIDO UAF RP Server](https://github.com/emersonmello/UAF).
+
+## Hardware requirements
+
+- 01 [Raspberry PI 3 B](https://www.raspberrypi.org/products/raspberry-pi-3-model-b/)
+- 01 [Elechouse PN532 NFC RFID module V3](http://www.elechouse.com/elechouse/index.php?main_page=product_info&cPath=90_93&products_id=2242)
+- 01 Breadboard to connect raspberry and PN532  
+
+## PN532 NFC Module for Raspberry Pi 3 
 
 *Note: If you have configured libnfc before, please delete the config file.*
 
@@ -93,17 +101,22 @@ Then type in `nfc-list` or `nfc-poll` to check the NFC module:
 
 * libnfc >= 1.7.1 
 * cmake
-	```sudo apt install cmake```
+```
+	sudo apt install cmake
+```
 * swig	
-	```sudo apt-get install swig```
+```
+	sudo apt-get install swig
+```
 * python
 
 2. Quickstart
-	
+```
 	git clone https://github.com/xantares/nfc-bindings.git
 	cmake -DCMAKE_INSTALL_PREFIX=~/.local .
 	make install
 	python python/examples/quick_start_example.py 
+```
 
 ## NFC Prototype
 	
@@ -127,9 +140,10 @@ Then type in `nfc-list` or `nfc-poll` to check the NFC module:
 ```
 
 ### References
-
-[^1]: http://wiki.sunfounder.cc/index.php?title=PN532_NFC_Module_for_Raspberry_Pi
+ 
 
 [1] [PN532 NFC Module for Raspberry Pi](http://wiki.sunfounder.cc/index.php?title=PN532_NFC_Module_for_Raspberry_Pi)
 
 [2] [Setting up a PN532 NFC module on a Raspberry Pi using I2C](https://blog.stigok.com/post/setting-up-a-pn532-nfc-module-on-a-raspberry-pi-using-i2c)
+
+[3] [NFC Bindings](https://github.com/xantares/nfc-bindings)
