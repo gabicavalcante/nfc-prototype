@@ -2,7 +2,7 @@
 
 This project is a simple prototype to use FIDO and Federation Authentication. This card reader uses NFC to communicate with a specific Android Opening Door App.
 
-## PN532 NFC Module for Raspberry Pi [1](http://wiki.sunfounder.cc/index.php?title=PN532_NFC_Module_for_Raspberry_Pi)
+## PN532 NFC Module for Raspberry Pi 3 [^1](http://wiki.sunfounder.cc/index.php?title=PN532_NFC_Module_for_Raspberry_Pi)
 
 *Note: If you have configured libnfc before, please delete the config file.*
 
@@ -12,7 +12,7 @@ This project is a simple prototype to use FIDO and Federation Authentication. Th
 ```
 sudo raspi-config
 ```
-Select 5 Interfacing Options -> I2C -> yes.
+Select *5 Interfacing Options* -> *I2C* -> *yes*.
 
 2. Install some dependent packages
 ```
@@ -64,8 +64,6 @@ log_level = 1
 # Manually set default device (no default)
 # To set a default device, you must set both name and connstring for your device
 # Note: if autoscan is enabled, default device will be the first device available in device list.
-#device.name = "_PN532_SPI"
-#device.connstring = "pn532_spi:/dev/spidev0.0:500000"
 device.name = "_PN532_I2c"
 device.connstring = "pn532_i2c:/dev/i2c-1"
 ```
@@ -81,21 +79,15 @@ Toggle the switch to the I2C mode
 7. Run i2cdetect –y 1 to check whether the I2C device is recognized.
 
 If yes, it means both the module and the wiring work well.
-Then type in nfc-list to check the NFC module: 
+Then type in `nfc-list` or `nfc-poll` to check the NFC module: 
 
-[put prints]
-
-
-8. Run `nfc-list` or `nfc-poll`.
-
-### References
-
-[1] [PN532 NFC Module for Raspberry Pi](http://wiki.sunfounder.cc/index.php?title=PN532_NFC_Module_for_Raspberry_Pi)
-
-[2] [Setting up a PN532 NFC module on a Raspberry Pi using I2C](https://blog.stigok.com/post/setting-up-a-pn532-nfc-module-on-a-raspberry-pi-using-i2c)
+![alt text](image/I2C-2.png "NFC commands")
 
 
-## NFC Bindings
+
+
+
+## [NFC Bindings](https://github.com/xantares/nfc-bindings)
 
 1. Install Requirements
 
@@ -117,13 +109,27 @@ Then type in nfc-list to check the NFC module:
 	
 1. Get the source code
 
+```
 	cd ~ && git clone https://github.com/I-am-Gabi/nfc-prototype.git
 	cd nfc-prototype/
+```
 
 2. Change HOSTNAME and PORT values on Door lock NFC card reader's settings.py file to the IP Address and PORT where you are running the FIDO UAF Demo Server 
-	
+
+```	
 	nano settgins.py
+```
 
 3. Run it
-	
+
+```
 	python nfc-prototype.py
+```
+
+### References
+
+[^1]: http://wiki.sunfounder.cc/index.php?title=PN532_NFC_Module_for_Raspberry_Pi
+
+[1] [PN532 NFC Module for Raspberry Pi](http://wiki.sunfounder.cc/index.php?title=PN532_NFC_Module_for_Raspberry_Pi)
+
+[2] [Setting up a PN532 NFC module on a Raspberry Pi using I2C](https://blog.stigok.com/post/setting-up-a-pn532-nfc-module-on-a-raspberry-pi-using-i2c)
