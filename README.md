@@ -102,20 +102,20 @@ Then type in `nfc-list` or `nfc-poll` to check the NFC module:
 * libnfc >= 1.7.1 
 * cmake
 ```
-	sudo apt install cmake
+sudo apt install cmake
 ```
 * swig	
 ```
-	sudo apt-get install swig
+sudo apt-get install swig
 ```
 * python
 
 2. Quickstart
 ```
-	git clone https://github.com/xantares/nfc-bindings.git
-	cmake -DCMAKE_INSTALL_PREFIX=~/.local .
-	make install
-	python python/examples/quick_start_example.py 
+git clone https://github.com/xantares/nfc-bindings.git
+cmake -DCMAKE_INSTALL_PREFIX=~/.local .
+make install
+python python/examples/quick_start_example.py 
 ```
 
 ## NFC Prototype
@@ -123,20 +123,20 @@ Then type in `nfc-list` or `nfc-poll` to check the NFC module:
 1. Get the source code
 
 ```
-	cd ~ && git clone https://github.com/I-am-Gabi/nfc-prototype.git
-	cd nfc-prototype/
+cd ~ && git clone https://github.com/I-am-Gabi/nfc-prototype.git
+cd nfc-prototype/
 ```
 
 2. Change HOSTNAME and PORT values on Door lock NFC card reader's settings.py file to the IP Address and PORT where you are running the FIDO UAF Demo Server 
 
 ```	
-	nano settgins.py
+nano settgins.py
 ```
 
 3. Run it
 
 ```
-	python nfc-prototype.py
+python nfc-prototype.py
 ```
 
 ### References
