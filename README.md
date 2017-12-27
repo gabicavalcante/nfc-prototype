@@ -84,14 +84,14 @@ Toggle the switch to the I2C mode
 | ----------- | :---------: |
 | H           | L           |
 
-7. Run i2cdetect –y 1 to check whether the I2C device is recognized.
+7. Run `i2cdetect -y 1` to check whether the I2C device is recognized.
+
+![alt text](image/i2cdetect.png "I2C detect command")
 
 If yes, it means both the module and the wiring work well.
 Then type in `nfc-list` or `nfc-poll` to check the NFC module: 
 
-![alt text](image/I2C-2.png "NFC commands")
-
-
+![alt text](image/nfc-command.png "NFC commands")
 
 
 
@@ -127,17 +127,19 @@ cd ~ && git clone https://github.com/I-am-Gabi/nfc-prototype.git
 cd nfc-prototype/
 ```
 
-2. Change HOSTNAME and PORT values on Door lock NFC card reader's settings.py file to the IP Address and PORT where you are running the FIDO UAF Demo Server 
+2. Change *HOSTNAME* and *PORT* values on Door lock NFC card reader's settings.py file to the IP Address and *PORT* where you are running the FIDO UAF Demo Server. 
 
 ```	
-nano settgins.py
+nano settins.py
 ```
 
 3. Run it
 
 ```
-python nfc-prototype.py
+python nfc-protype.py
 ```
+
+![alt text](image/nfc-protype.png "NFC prototype")
 
 ### References
  
