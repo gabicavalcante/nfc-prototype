@@ -118,10 +118,10 @@ def nfcProtocol():
     szRx = len(DoorProtocol['DOOR_WAIT'])
     res, rapdu = cardTransmit(pnd, pbtTx, szTx, szRx) 
     print("REC: " + rapdu)
+    print("\nWaiting...\n")
 
     timeout = sys.maxsize
-    while rapdu == DoorProtocol['DOOR_WAIT']:
-        print("\nWaiting...\n") 
+    while True: 
         szTx = len(pbtTx)
         szRx = len(DoorProtocol['DOOR_WAIT'])
         res, rapdu = cardTransmit(pnd, pbtTx, szTx, szRx) 
@@ -134,6 +134,9 @@ def nfcProtocol():
             szRx = len(DoorProtocol['DOOR_WAIT'])
             res, rapdu = cardTransmit(pnd, pbtTx, szTx, szRx) 
             print("RED " + rapdu)
+            break
+        timeout -= 1
+        if timeout <= 0:
             break
 
 if __name__ == '__main__':
