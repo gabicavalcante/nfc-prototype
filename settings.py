@@ -1,5 +1,5 @@
 fido_server = {
-    'HOSTNAME': "169.254.46.134",
+    'HOSTNAME': "169.254.30.27",
     'SCHEME': "http://",
     'PORT': 8000,
 
