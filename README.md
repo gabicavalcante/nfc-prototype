@@ -6,7 +6,7 @@ This project and [Android Opening Door App](https://github.com/emersonmello/open
 
 Figure below shows all necessary components:
 
-<img src= images/components.png width="100"/>
+<img src= images/components.png width="600"/>
 
 ## Hardware requirements
 
