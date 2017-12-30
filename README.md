@@ -6,7 +6,7 @@ This project and [Android Opening Door App](https://github.com/emersonmello/open
 
 Figure below shows all necessary components:
 
-![alt text](image/components.png "Components")
+![alt text](images/components.png "Components")
 
 ## Hardware requirements
 
@@ -88,16 +88,16 @@ Toggle the switch to the I2C mode
 | ----------- | :---------: |
 | H           | L           |
 
-![alt text](image/pn532.png "PN532")
+![alt text](images/pn532.png "PN532")
 
 7. Run `i2cdetect -y 1` to check whether the I2C device is recognized.
 
-![alt text](image/i2cdetect.png "I2C detect command")
+![alt text](images/i2cdetect.png "I2C detect command")
 
 If yes, it means both the module and the wiring work well.
 Then type in `nfc-list` or `nfc-poll` to check the NFC module: 
 
-![alt text](image/nfc-command.png "NFC commands")
+![alt text](images/nfc-command.png "NFC commands")
 
 
 
@@ -145,7 +145,7 @@ nano settins.py
 python nfc-protype.py
 ```
 
-![alt text](image/nfc-protype.png "NFC prototype")
+![alt text](images/nfc-protype.png "NFC prototype")
 
 
 ## Tips
