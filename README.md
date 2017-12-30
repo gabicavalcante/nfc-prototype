@@ -88,7 +88,7 @@ Toggle the switch to the I2C mode
 | ----------- | :---------: |
 | H           | L           |
 
-![alt text](images/pn532.png "PN532")
+![alt text](images/pn532.jpeg "PN532")
 
 7. Run `i2cdetect -y 1` to check whether the I2C device is recognized.
 
