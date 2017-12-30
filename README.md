@@ -2,7 +2,11 @@
 
 This project is a simple prototype to use [FIDO UAF Standard](https://fidoalliance.org/specifications/download/) and Federation Authentication with IoT. This card reader uses NFC to communicate with a specific Android mobile app, and a Raspberry Pi 3. You can check the [original project in C](https://github.com/emersonmello/doorlock_raspberrypi), and the [Android App](https://github.com/emersonmello/openingdoor). 
 
-This projeto and [Android Opening Door App](https://github.com/emersonmello/openingdoor) depend of a third-party, called [FIDO UAF RP Server](https://github.com/emersonmello/UAF).
+This project and [Android Opening Door App](https://github.com/emersonmello/openingdoor) depend of a third-party, called [FIDO UAF RP Server](https://github.com/emersonmello/UAF).
+
+Figure below shows all necessary components:
+
+![alt text](image/components.png "Components")
 
 ## Hardware requirements
 
@@ -84,6 +88,8 @@ Toggle the switch to the I2C mode
 | ----------- | :---------: |
 | H           | L           |
 
+![alt text](image/pn532.png "PN532")
+
 7. Run `i2cdetect -y 1` to check whether the I2C device is recognized.
 
 ![alt text](image/i2cdetect.png "I2C detect command")
@@ -140,6 +146,15 @@ python nfc-protype.py
 ```
 
 ![alt text](image/nfc-protype.png "NFC prototype")
+
+
+## Tips
+
+- SSH connection via ethernet cable
+
+	$ ssh pi@raspberrypi.local
+
+Or `ping raspberrypi.local`, check the IP and run: `$ ssh pi@IP`.
 
 ### References
  
