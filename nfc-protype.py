@@ -8,7 +8,7 @@ TODO:
 - [improve] check the returns
 
 PS: if fido server and raspberry are on differents networks, is needed change the ip sended in UAFRequestMessage to card.
-"""
+""" 
 
 from __future__ import print_function
 import sys
@@ -16,12 +16,12 @@ import nfc
 import requests
 from door_protocol import DoorProtocol
 from settings import fido_server
-import time 
+import time  
 import json
 import re 
 from util import bytearry2json
 
-BLOCK_SIZE = 200
+BLOCK_SIZE = 200 
 
 context = None # context
 pnd = None     # device
@@ -64,7 +64,7 @@ def nfcInitListen():
 def nfcProtocol():
     """ NFC Protocol
     """ 
-    global pnd, nt, context
+    global pnd, nt, context 
 
     nmMifare = nfc.modulation()
     nmMifare.nmt = nfc.NMT_ISO14443A
@@ -84,21 +84,21 @@ def nfcProtocol():
     print("Application selected!");
 
     print("REC: " + rapdu)
-    if rapdu != DoorProtocol['DOOR_HELLO']:
-        print("** Opss ** I'm expecting HELLO msg, but card sent to me: %s. len: %d\n" % (rapdu, len(rapdu)))
+    if rapdu != DoorProtocol['DOOR_HELLO']: 
+        print("** Opss ** I'm expecting HELLO msg, but card sent to me: %s. len: %d\n" % (rapdu, len(rapdu))) 
         sys.exit(1)
 
     # FIDO Auth Request Message
     print("Doing AuthRequest to FIDO UAF Server\n");
     UAFurl = fido_server['AUTH_REQUEST_MSG'] % (fido_server['SCHEME'], fido_server['HOSTNAME'], fido_server['PORT'], fido_server['AUTH_REQUEST_ENDPOINT'])
-    
+     
     try:
         r = requests.get(UAFurl)
         r.raise_for_status()
     except requests.exceptions.RequestException as e:  # This is the correct syntax
         print(e)
         sys.exit(1)
-
+ 
     if (r.status_code != 200):
     	print("** Opss ** Error to connect to FIDO Server")
         pbtTx = DoorProtocol['ERROR'] 
@@ -116,11 +116,11 @@ def nfcProtocol():
     szRx = len(DoorProtocol['DOOR_NEXT']) 
     res, rapdu = cardTransmit(pnd, pbtTx, szTx, szRx)
     print("REC: " + rapdu)
-
+ 
     if rapdu != DoorProtocol['DOOR_NEXT']:
         print("Error to send number of blocks")
         sys.exit(1)
-
+ 
     # Sending UAFRequestMessage to card
     chunks = len(content)
     msg_packages = ([ content[i:i + BLOCK_SIZE] for i in range(0, chunks, BLOCK_SIZE) ])
@@ -129,10 +129,10 @@ def nfcProtocol():
         pbtTx = pack
         szTx = len(pbtTx)
         szRx = len(DoorProtocol['DOOR_OK'])
-        res, rapdu = cardTransmit(pnd, pbtTx, szTx, szRx) 
+        res, rapdu = cardTransmit(pnd, pbtTx, szTx, szRx)  
         if rapdu != DoorProtocol['DOOR_OK']:
             print("** Opss ** I'm expecting OK msg, but card sent to me: %s. len: %s" % (rapdu, len(rapdu)))
-            sys.exit(1)
+            sys.exit(1) 
         print("REC: " + rapdu)
 
     print("\nSending READY!")
@@ -140,7 +140,8 @@ def nfcProtocol():
     pbtTx = DoorProtocol['DOOR_READY']
     szTx = len(pbtTx)
     szRx = len(DoorProtocol['DOOR_WAIT'])
-    res, rapdu = cardTransmit(pnd, pbtTx, szTx, szRx) 
+    res, rapdu = cardTransmit(pnd, pbtTx, szTx, szRx)  
+
     if rapdu != DoorProtocol['DOOR_WAIT']:
         print("** Opss ** I'm expecting WAIT msg, but card sent to me: %s. len: %s" % (rapdu, len(rapdu)))
         sys.exit(1)
@@ -196,7 +197,6 @@ def nfcProtocol():
     print(r.text) 
 
    
-
 if __name__ == '__main__':
     # Reset the default Crtl-C behavior
     import signal
