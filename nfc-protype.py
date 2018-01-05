@@ -4,7 +4,7 @@
 """Quick start example that presents how to use fido with IOT
 
 TODO: 
-- [fix] get the uaf msg from the app, convert to json and send to fido server
+- [improve] get the uaf msg from the app, convert to json and send to fido server
 - [improve] check the returns
 
 PS: if fido server and raspberry are on differents networks, is needed change the ip sended in UAFRequestMessage to card.
@@ -20,6 +20,9 @@ import time
 import json
 import re 
 from util import bytearry2json
+
+from ecp import saml_request
+from lxml import etree
 
 BLOCK_SIZE = 200 
 
@@ -184,17 +187,43 @@ def nfcProtocol():
         szRx = BLOCK_SIZE
         res, rapdu = cardTransmit(pnd, pbtTx, szTx, szRx)   
         UAFmsg += rapdu
- 
-    UAFmsg = "".join(map(chr, UAFmsg))
-    UAFmsg = bytearry2json(UAFmsg)
-    print(UAFmsg) 
+
+    UAFmsg = "".join(map(chr, UAFmsg)) 
+    UAFmsg = bytearry2json(UAFmsg) 
 
     # FIDO Auth Request Message
     print("Forwarding card response to FIDO UAF Server: \n")
     UAFurl = fido_server['AUTH_REQUEST_MSG'] % (fido_server['SCHEME'], fido_server['HOSTNAME'], fido_server['PORT'], fido_server['AUTH_RESPONSE_ENDPOINT'])
     headers = { 'Accept': 'application/json', 'Content-Type': 'application/json'}
     r = requests.post(UAFurl, data=UAFmsg, headers=headers)
-    print(r.text) 
+
+    response = json.loads(r.text)
+    if response[0]["status"] == "SUCCESS": 
+        pbtTx = DoorProtocol['DOOR_GRANTED'] 
+        szTx = len(pbtTx)
+        szRx = len(DoorProtocol['DOOR_BYE'])
+        res, rapdu = cardTransmit(pnd, pbtTx, szTx, szRx)   
+        print("Access granted!");
+        # ligar led verde
+        response = saml_request() 
+        print(etree.tostring(response))
+    else: 
+        pbtTx = DoorProtocol['DOOR_DENY'] 
+        szTx = len(pbtTx)
+        szRx = len(DoorProtocol['DOOR_BYE'])
+        res, rapdu = cardTransmit(pnd, pbtTx, szTx, szRx)   
+        print("Access denied!");
+        # ligar led vermelho
+
+    if (rapdu == DoorProtocol['DOOR_BYE']):
+        print("bye!")
+    else:
+        print(":-(")
+
+    return
+
+
+
 
    
 if __name__ == '__main__':
