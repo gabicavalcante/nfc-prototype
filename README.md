@@ -133,6 +133,13 @@ cd ~ && git clone https://github.com/I-am-Gabi/nfc-prototype.git
 cd nfc-prototype/
 ```
 
+2. Install some dependent packages
+
+```	
+pip install -r requirements.txt 
+sudo apt-get install python-lxml
+```
+
 2. Change *HOSTNAME* and *PORT* values on Door lock NFC card reader's settings.py file to the IP Address and *PORT* where you are running the FIDO UAF Demo Server. 
 
 ```	
