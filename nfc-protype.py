@@ -189,7 +189,7 @@ def nfcProtocol():
         UAFmsg += rapdu
 
     UAFmsg = "".join(map(chr, UAFmsg)) 
-    UAFmsg = bytearry2json(UAFmsg) 
+    UAFmsg = bytearry2json(UAFmsg)  
 
     # FIDO Auth Request Message
     print("Forwarding card response to FIDO UAF Server: \n")
@@ -223,9 +223,6 @@ def nfcProtocol():
     return
 
 
-
-
-   
 if __name__ == '__main__':
     # Reset the default Crtl-C behavior
     import signal
