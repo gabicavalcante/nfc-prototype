@@ -71,6 +71,10 @@ from lxml import etree, html
 from copy import deepcopy
 
 from pep import xacml_request_p1
+#import urllib.request as urllib2
+import urllib2
+import cookielib
+
 
 # mapping from user friendly names or tags to IdP ECP enpoints
 IDP_ENDPOINTS = {
@@ -87,6 +91,17 @@ SP_ENDPOINTS = {
  "sp-python" : "https://sp-python.cafeexpresso.rnp.br/secure/index.php",
  "spstela"   : "http://idp-shibboleth/secure/index.php"
 }
+
+def parse_rows(rows):
+    """ Get data from rows """
+    results = {}
+    for row in rows:
+        table_data = row.find_all('td')
+        line = []
+	if table_data:
+            line.append([data.get_text() for data in table_data])
+	if line: results[str(line[0][0])] = str(line[0][1])
+    return results
 
 class MyCookieJar(cookielib.MozillaCookieJar):
     """
@@ -264,7 +279,7 @@ def get(idp_endpoint, sp_target, login, debug=False):
         print("###### BEGIN IDP RESPONSE")
         print()
         print(etree.tostring(idp_response))
-        print(idp_response)
+        # print(idp_response)
         print()
         print("###### END IDP RESPONSE")
         print()
@@ -355,7 +370,7 @@ def get(idp_endpoint, sp_target, login, debug=False):
         print >>sys.stderr, "Error POSTing package to SP: %s" % e
         sys.exit(1)
 
-e    # we ignore the response from the SP here and rely on the 
+    # we ignore the response from the SP here and rely on the 
     # opener() instance and the cookie jar to get the cookies
     # we need as they are sent from the SP in order to make the
     # final request
@@ -383,7 +398,7 @@ e    # we ignore the response from the SP here and rely on the
 
     atributos_p1_t1 = {"action-id": "open",
                        "resource-id": "stela",
-                       "role": table_data['Shib-eduPerson-eduPersonAffiliation']}
+                       "brEduAffiliationType": table_data['Shib-eduPerson-eduPersonAffiliation']}
 
     print("Acessando recurso com atributos %s..." % atributos_p1_t1)
     if xacml_request_p1(atributos_p1_t1):
