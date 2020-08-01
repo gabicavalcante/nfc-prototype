@@ -69,9 +69,7 @@ from lxml import etree
 from copy import deepcopy 
 
 SP_ENDPOINTS = {
- "sp1"       : "https://sp1ampto.cafeexpresso.rnp.br/secure/index.php", 
- "sp2"       : "https://sp2ampto.cafeexpresso.rnp.br/secure/index.php",
- "sp-python" : "https://sp-python.cafeexpresso.rnp.br/secure/index.php"
+ "sp" : "sp",
 }
 
 class MyCookieJar(cookielib.MozillaCookieJar):
