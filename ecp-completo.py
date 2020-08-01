@@ -26,36 +26,6 @@ version 2.5.6.
 
 The script assumes both the IdP and SP are properly configured for ECP
 using basic authentication. See the Shibboleth documentation for details.
-
- 
-- idp1 
-user: aluno.egresso
-senha: aluno.egresso@idp
-
-user: aluno
-senha: aluno@idp
-
-- idp2
-user: aluno.egresso
-senha: aluno.egresso@idp2ampto
-
- aluna aluna@idp2ampto
-
-- idp3
-user: aluno.egresso
-senha: aluno.egresso@idp2ampto 
-
-- idptest
-user: aluno
-senha: aluno@idp 
-
-python ecp.py idp2ampto https://sp2ampto.cafeexpresso.rnp.br/secure/index.php aluno.egresso --debug
-python ecp.py idp1ampto https://sp2ampto.cafeexpresso.rnp.br/secure/index.php aluno.egresso --debug
-python ecp.py idp1ampto https://sp-python.cafeexpresso.rnp.br/secure/index.php aluno --debug
-python ecp.py idptest https://sp2ampto.cafeexpresso.rnp.br/secure/index.php aluno --debug 
-======= 
- 
- 
 """
 
 import os
@@ -78,18 +48,11 @@ import cookielib
 
 # mapping from user friendly names or tags to IdP ECP enpoints
 IDP_ENDPOINTS = {
- "idp1ampto" : "https://idp1ampto.cafeexpresso.rnp.br/idp/profile/SAML2/SOAP/ECP", 
- "idp2ampto" : "https://idp2ampto.cafeexpresso.rnp.br/idp/profile/SAML2/SOAP/ECP",
- "idpv3"     : "https://idpv3.cafeexpresso.rnp.br/idp/profile/SAML2/SOAP/ECP",
- "idp3"      : "https://idp3.cafeexpresso.rnp.br/idp/profile/SAML2/SOAP/ECP",
- "idpstela"  : "https://shibboleth-test.localdomain/idp/idp/profile/SAML2/SOAP/ECP"
+ "idp"	: "...",
 }
 
 SP_ENDPOINTS = {
- "sp1"       : "https://sp1ampto.cafeexpresso.rnp.br/secure/index.php", 
- "sp2"       : "https://sp2ampto.cafeexpresso.rnp.br/secure/index.php",
- "sp-python" : "https://sp-python.cafeexpresso.rnp.br/secure/index.php",
- "spstela"   : "http://idp-shibboleth/secure/index.php"
+ "sp"	: "...",
 }
 
 def parse_rows(rows):
